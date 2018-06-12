@@ -7,8 +7,13 @@ exports.addToRouter = function (data) {
     // console.log(data, JSON.stringify(data));
     let srcPath = path.join(process.cwd(), '../../');
     console.log('template', srcPath);
-    reWriteRouter(path.join(srcPath, './router/index.js'), data);
-    reWriteMenu(path.join(srcPath, './menu-config.json'), data);
+    try {
+        reWriteRouter(path.join(srcPath, './router/index.js'), data);
+        reWriteMenu(path.join(srcPath, './menu-config.json'), data);
+    }
+    catch (e) {
+        console.log(e);
+    }
 };
 
 function reWriteRouter(filePath, data) {
