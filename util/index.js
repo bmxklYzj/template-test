@@ -37,7 +37,7 @@ function reWriteMenu(filePath, data) {
     let menuArray = require(filePath);
 
     let newMenuItem = {
-        name: data.title,
+        name: data.name,
         path: data.destDirName,
         disabled: false
     };
@@ -46,7 +46,7 @@ function reWriteMenu(filePath, data) {
         name: data.categories,
         disabled: true,
         children: [{
-            name: data.title,
+            name: data.name,
             path: data.destDirName,
             disabled: false
         }]
