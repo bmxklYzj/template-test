@@ -66,6 +66,6 @@ module.exports = {
         }
     },
     complete(data, {chalk}) {
-        // addToRouter(data);
+        addToRouter(data);
     }
 };
