@@ -1,0 +1,17 @@
+{
+    "name": "@hsedge-xpage-material/{{destDirName}}",
+    "version": "{{version}}",
+    "description": "{{description}}",
+    "main": "src/index.vue",
+    "dependencies": {
+
+    },
+    "blockConfig": {
+        "name": "{{destDirName}}",
+        "title": "{{name}}",
+        "categories": [
+            "{{categories}}"
+        ],
+        "snapshot": "snapshot.png"
+    }
+}
