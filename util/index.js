@@ -27,6 +27,7 @@ exports.addToRouter = function (data) {
  */
 function reWriteRouter(filePath, data) {
     if (!fs.existsSync(filePath)) {
+        console.error('src/router/index.js 不存在', filePath);
         return;
     }
     let tpl = fs.readFileSync(filePath, 'utf-8');
@@ -59,6 +60,7 @@ function reWriteRouter(filePath, data) {
  */
 function reWriteMenu(filePath, data) {
     if (!fs.existsSync(filePath)) {
+        console.error('src/menu-config.json 不存在', filePath);
         return;
     }
     let menuArray = require(filePath);
