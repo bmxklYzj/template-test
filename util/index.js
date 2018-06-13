@@ -26,6 +26,9 @@ exports.addToRouter = function (data) {
  * @param {Object} data 用户输入数据
  */
 function reWriteRouter(filePath, data) {
+    if (!fs.existsSync(filePath)) {
+        return;
+    }
     let tpl = fs.readFileSync(filePath, 'utf-8');
     // 找 `routes = [` 匹配的 `]` 作为 endPos
     const startString = 'routes = [';
@@ -55,6 +58,9 @@ function reWriteRouter(filePath, data) {
  * @param {Object} data 用户输入数据
  */
 function reWriteMenu(filePath, data) {
+    if (!fs.existsSync(filePath)) {
+        return;
+    }
     let menuArray = require(filePath);
 
     let newMenuItem = {
