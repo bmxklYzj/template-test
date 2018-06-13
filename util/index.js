@@ -3,10 +3,13 @@ let fs = require('fs');
 let path = require('path');
 const NEWLINE = '\r\n';
 
+/**
+ * 生成block完成后的回调函数中把新生成的block加入到 src/router/index.js 和 src/menu-config.json 中
+ *
+ * @param {Object} data 用户输入数据
+ */
 exports.addToRouter = function (data) {
-    // console.log(data, JSON.stringify(data));
     let srcPath = path.join(process.cwd(), '../../');
-    console.log('template', srcPath);
     try {
         reWriteRouter(path.join(srcPath, './router/index.js'), data);
         reWriteMenu(path.join(srcPath, './menu-config.json'), data);
@@ -16,8 +19,15 @@ exports.addToRouter = function (data) {
     }
 };
 
+/**
+ * 写入 ./router/index.js
+ *
+ * @param {string} filePath 文件地址
+ * @param {Object} data 用户输入数据
+ */
 function reWriteRouter(filePath, data) {
     let tpl = fs.readFileSync(filePath, 'utf-8');
+    // 找 `routes = [` 匹配的 `]` 作为 endPos
     const startString = 'routes = [';
     let startPos = tpl.indexOf(startString) + startString.length - 1;
     let endPos = findPairBracket(tpl.slice(startPos)) + startPos;
@@ -38,6 +48,12 @@ function reWriteRouter(filePath, data) {
     fs.writeFileSync(filePath, res);
 }
 
+/**
+ * 写入 src/menu-config.json
+ *
+ * @param {string} filePath 文件地址
+ * @param {Object} data 用户输入数据
+ */
 function reWriteMenu(filePath, data) {
     let menuArray = require(filePath);
 
@@ -65,15 +81,21 @@ function reWriteMenu(filePath, data) {
             item.children.push(newMenuItem);
         }
     });
+    // 新category则创建一级菜单
     if (!isExist) {
         menuArray.push(newCategoryItem);
     }
 
     let res = JSON.stringify(menuArray, null, 4);
-
     fs.writeFileSync(filePath, res);
 }
 
+/**
+ * 找到与第一个 `[` 匹配的 `]`
+ *
+ * @param {string} s 待查找字符串
+ * @return {number} i 匹配的 `]` 的下标
+ */
 function findPairBracket(s) {
     let index = 0;
     for (let i = 0, len = s.length; i < len; i++) {
