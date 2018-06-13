@@ -19,10 +19,13 @@ const {
 } = require('./util');
 
 module.exports = {
+    metalsmith: function (metalsmith, opts, helpers) {
+        metalsmith._metadata.date = formatDate(new Date());
+    },
     prompts: {
         name: {
             type: 'input',
-            message: 'name',
+            message: 'block title',
             default: 'demo block',
             validate: (value) => {
                 value = value.trim();
@@ -38,10 +41,10 @@ module.exports = {
             message: 'version',
             default: '1.0.0'
         },
-        date: {
+        author: {
             type: 'string',
-            message: 'date',
-            default: formatDate(new Date())
+            message: 'author',
+            default: 'defualt author not take effect!!!'
         },
         description: {
             type: 'string',
