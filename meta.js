@@ -25,12 +25,17 @@ module.exports = {
     prompts: {
         name: {
             type: 'input',
-            message: 'block title',
-            default: 'demo block',
+            message: 'name(keep it default)',
+            default: 'defualt name not take effect!!!'
+        },
+        title: {
+            type: 'input',
+            message: 'block Chinese title',
+            required: true,
             validate: (value) => {
                 value = value.trim();
                 if (!value) {
-                    return 'name cannot be empty';
+                    return 'block title can not be empty';
                 }
                 return true;
             }

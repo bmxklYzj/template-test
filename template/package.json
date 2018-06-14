@@ -8,7 +8,7 @@
     },
     "blockConfig": {
         "name": "{{destDirName}}",
-        "title": "{{name}}",
+        "title": "{{title}}",
         "categories": [
             "{{categories}}"
         ],
