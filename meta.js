@@ -12,7 +12,6 @@ const CATEGORIES = [
 ];
 
 const {
-    addToRouter,
     formatDate
 } = require('./util');
 
@@ -72,6 +71,6 @@ module.exports = {
         }
     },
     complete(data, {chalk}) {
-        addToRouter(data);
+
     }
 };
